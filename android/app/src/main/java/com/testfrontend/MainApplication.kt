@@ -12,15 +12,18 @@ import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.flipper.ReactNativeFlipper
 import com.facebook.soloader.SoLoader
 
+import com.testfrontend.GetPhoneIdPackage
+
+
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost =
       object : DefaultReactNativeHost(this) {
-        override fun getPackages(): List<ReactPackage> {
-          // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
-          return PackageList(this).packages
-        }
+        override fun getPackages(): List<ReactPackage> =
+            PackageList(this).getPackages().apply {
+              add(GetPhoneIdPackage())
+            }
+          
 
         override fun getJSMainModuleName(): String = "index"
 
